@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tempura.threadtx.test.mapper.CarInfoMapper">
+
+    <select id="batchInsert">
+        INSERT INTO car_info
+        (id,car_name)
+        values
+        <foreach collection="carInfos" item="item" index="index" separator=",">
+            (
+            #{item.id},
+            #{item.carName}
+            )
+        </foreach>
+    </select>
+
+    <update id="execute">
+        ${sql}
+    </update>
+
+    <delete id="deleteAll">
+        delete from car_info
+    </delete>
+</mapper>
